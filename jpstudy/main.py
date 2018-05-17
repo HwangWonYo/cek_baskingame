@@ -15,7 +15,7 @@ def launch():
 @clova.intent('ihyungyoungsa')
 def ihyungyoungsa():
     print(session)
-    speech = render_template('ihyungyoungsa_intro')
+    speech = "이 형용사를 공부해봅시다. 뜻을 말해보세요"
     word = "良い"
     session.sessionAttributes = {
         'word': word,
@@ -28,7 +28,7 @@ def ihyungyoungsa():
 @clova.intent('dongsa')
 def dongsa():
     print(session)
-    speech = render_template('dongsa_intro')
+    speech = "동사를 공부해봅시다. 뜻을 말해보세요"
     word = '見る'
     session.sessionAttributes = {
         'word': word,
