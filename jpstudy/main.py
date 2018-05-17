@@ -17,7 +17,7 @@ def ihyungyoungsa():
     print(session)
     speech = "이 형용사를 공부해봅시다. 뜻을 말해보세요"
     word = "良い"
-    session.sessionAttributes = {
+    session.attributes = {
         'word': word,
         'play': 'ihyungyoungsa'
     }
@@ -30,7 +30,7 @@ def dongsa():
     print(session)
     speech = "동사를 공부해봅시다. 뜻을 말해보세요"
     word = '見る'
-    session.sessionAttributes = {
+    session.attributes = {
         'word': word,
         'play': 'dongsa'
     }
@@ -41,7 +41,7 @@ def dongsa():
 @clova.intent('answer')
 def answer(ans):
     print(session)
-    attr = session.sessionAttributes
+    attr = session.attributes
     ask_word = attr.get('word')
     usr_word = word_set.get(ans)
     if ask_word is None:
