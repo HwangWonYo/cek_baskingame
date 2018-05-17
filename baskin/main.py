@@ -19,7 +19,6 @@ def launch():
                 mapping={'num1': 'numbera', 'num2': 'numbera', 'num3': 'numbera'},
                 convert={'num1': int, 'num2': int, 'num3': int})
 def play_game(num1, num2, num3):
-    print(session)
     turn_num = get_turn_num()
 
     last_num = num3
@@ -30,7 +29,7 @@ def play_game(num1, num2, num3):
     if last_num is None:
         last_num = num1
 
-    if last_num - turn_num > 2 or last_num - turn_num < 0:
+    if last_num - int(turn_num) > 2 or last_num - int(turn_num) < 0:
         return question('규칙에 어긋납니다. 다시 해주세요.').add_speech(turn_num + "을 말할 차례입니다.")
 
     if last_num >= 31 or last_num <= 0:
@@ -61,6 +60,7 @@ def get_turn_num():
 
 def make_number_to_speech(last_num):
     if (last_num - 2) % 4 == 0:
+        session.sessionAttributes = {'turn_num': str(last_num + 1)}
         return ""
     speech = str(last_num + 1)
     return speech + " " + make_number_to_speech(last_num + 1)
