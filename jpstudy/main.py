@@ -36,7 +36,7 @@ def dongsa():
     return question(speech).add_speech(word, lang='ja')
 
 
-@clova.intent('answer', mapping={'ans', 'answer'})
+@clova.intent('answer', mapping={'ans': 'answer'})
 def answer(ans):
     attr = session.sessionAttributes
     ask_word = attr.get('word')
