@@ -45,6 +45,19 @@ def answer(ans):
         return question("틀렸습니다. 다시 들어보세요.").add_speech(ask_word ,lang='ja').reprompt(ask_word, lang='ja')
 
 
+@clova.intent('letmeknow')
+def give_answer():
+    attr = session.sessionAttributes
+    ask_word = attr.get('word')
+    if ask_word is None:
+        return statement('물어본적이 없는데 어떻게 정답을 말하나요.').add_speech('서비스 종료합니다.')
+    for key ,word in words_set.items():
+        if word == ask_word:
+            ans = key
+            next_word = make_question()
+            return question('정답은 ' + ans + '입니다. 다른 단어를 들려드릴게요').add_speech(next_word, lang='ja')
+    return statement('착오가 있었네요 개발자 잘못입니다. ㅠ')
+
 @clova.default_intent
 def not_play_game():
     speech1 = "다른 말씀을 하시면 곤란합니다."
