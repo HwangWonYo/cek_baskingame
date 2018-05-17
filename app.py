@@ -13,4 +13,5 @@ logging.getLogger('flask_clova').setLevel(logging.DEBUG)
 
 if __name__ == "__main__":
     app.config['CLOVA_VERIFY_REQUESTS'] = False
-    app.run(host='0.0.0.0', port='80')
+    app.config['CLOVA_PRETTY_DEBUG_LOGS'] = True
+    app.run(host='0.0.0.0', port=80)

@@ -14,7 +14,6 @@ def launch():
 
 @clova.intent('ihyungyoungsa')
 def ihyungyoungsa():
-    print(session)
     speech = "이 형용사를 공부해봅시다. 뜻을 말해보세요"
     word = "良い"
     session.attributes = {
@@ -27,7 +26,6 @@ def ihyungyoungsa():
 
 @clova.intent('dongsa')
 def dongsa():
-    print(session)
     speech = "동사를 공부해봅시다. 뜻을 말해보세요"
     word = '見る'
     session.attributes = {
@@ -40,7 +38,6 @@ def dongsa():
 
 @clova.intent('answer')
 def answer(ans):
-    print(session)
     attr = session.attributes
     ask_word = attr.get('word')
     usr_word = word_set.get(ans)
@@ -56,7 +53,6 @@ def answer(ans):
 
 @clova.default_intent
 def not_play_game():
-    print(session)
     speech1 = "다른 말씀을 하시면 곤란합니다."
     return statement(speech1).add_speech('システム終了', lang='ja')
 
