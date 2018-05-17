@@ -15,5 +15,5 @@ def play_game():
 
 
 if __name__ == "__main__":
-    app.confing['CLOVA_VERIFY_REQUESTS'] = False
+    app.config['CLOVA_VERIFY_REQUESTS'] = False
     app.run(host='0.0.0.0', port='80')
