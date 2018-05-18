@@ -1,5 +1,15 @@
+"""
+    JPSTUDY
+    ~~~~~~~
+
+    Listen to Japanese and match word meaning
+    All answers should be registered in CEK Platform
+"""
+
 from flask import Blueprint
 from flask_clova import Clova, question, statement, session
+
+from .words import words_set
 
 app = Blueprint('jpstudy_api', __name__, url_prefix="/jpstudy")
 clova = Clova(blueprint=app)
@@ -27,8 +37,6 @@ def dongsa():
     return question(speech)
 
 
-from .words import words_set
-
 @clova.intent('answer', mapping={'ans': 'answer'})
 def answer(ans):
     attr = session.sessionAttributes
@@ -50,13 +58,18 @@ def give_answer():
     attr = session.sessionAttributes
     ask_word = attr.get('word')
     if ask_word is None:
+        # when user ask answer before play
+        # and end process.
         return statement('물어본적이 없는데 어떻게 정답을 말하나요.').add_speech('서비스 종료합니다.')
     for key ,word in words_set.items():
+        # find matched word
+        # and give new random question.
         if word == ask_word:
             ans = key
             next_word = make_question()
             return question('정답은 ' + ans + '입니다. 다른 단어를 들려드릴게요').add_speech(next_word, lang='ja')
     return statement('착오가 있었네요 개발자 잘못입니다. ㅠ')
+
 
 @clova.default_intent
 def not_play_game():
@@ -64,7 +77,7 @@ def not_play_game():
     attr = session.sessionAttributes
     ask_word = attr.get('word')
     if ask_word is None:
-        ask_word = 'システム終了'
+        ask_word = 'しっかりしてください'
 
     return question(speech1).add_speech(ask_word, lang='ja').reprompt(ask_word, lang='ja')
 
@@ -72,6 +85,9 @@ def not_play_game():
 import random
 
 def make_question():
+    """
+    Make random question
+    """
     random_words = random.choice(list(words_set.keys()))
     target_word = words_set.get(random_words)
     session.sessionAttributes['word'] = target_word
