@@ -5,11 +5,12 @@
     Listen to Japanese and match word meaning
     All answers should be registered in CEK Platform
 """
-
 from flask import Blueprint
 from flask_clova import Clova, question, statement, session
 
+
 from .words import words_set
+
 
 app = Blueprint('jpstudy_api', __name__, url_prefix="/jpstudy")
 clova = Clova(blueprint=app)
@@ -83,7 +84,6 @@ def not_play_game():
 
 
 import random
-
 def make_question():
     """
     Make random question

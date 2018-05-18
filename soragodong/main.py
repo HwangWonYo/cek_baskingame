@@ -1,9 +1,16 @@
+"""
+    소라 고동님
+    ~~~~~~~~
+
+    소라 고동님은 모든 것을 정해줍니다.
+"""
 from flask import Blueprint
-from flask_clova import Clova, question, statement, session
+from flask_clova import Clova, question, statement
 
 
 app = Blueprint('soragodong_api', __name__, url_prefix="/soragodong")
 clova = Clova(blueprint=app)
+
 
 import random
 @clova.launch

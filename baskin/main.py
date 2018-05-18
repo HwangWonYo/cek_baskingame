@@ -7,7 +7,7 @@
     And this code will never lose.
     That means user always lose.
 """
-from flask import Flask, Blueprint
+from flask import Blueprint
 from flask_clova import Clova, question, statement, session
 
 
