@@ -39,6 +39,9 @@ def play_game(num1, num2, num3):
     if last_num is None:
         last_num = num1
 
+    # Exceptional case: when CEK fail to match slots
+    if last_num is None:
+        return question('아... 다시 한번만 말해주세요')
     # check if an user keep the rule or remind
     if last_num - int(turn_num) > 2 or last_num - int(turn_num) < 0:
         return question('규칙에 어긋납니다. 다시 해주세요.').add_speech(turn_num + "을 말할 차례입니다.")
@@ -87,4 +90,4 @@ def make_number_to_speech(last_num):
         session.sessionAttributes = {'turn_num': str(last_num + 1)}
         return ""
     speech = str(last_num + 1)
-    return speech + " " + make_number_to_speech(last_num + 1)
+    return speech + "," + make_number_to_speech(last_num + 1)
