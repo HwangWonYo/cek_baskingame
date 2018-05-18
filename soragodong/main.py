@@ -17,6 +17,11 @@ def default_intent():
     return statement(speech)
 
 
+@clova.intent('spare')
+def nono():
+    return
+
+
 dialog_set = [
     "하지마",
     "가만히 있어",
