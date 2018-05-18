@@ -8,7 +8,7 @@ clova = Clova(blueprint=app)
 import random
 @clova.launch
 def launch():
-    return statement("안녕하세요. 소라 고동 입니다.")
+    return question(",").reprompt("응?")
 
 
 @clova.default_intent
