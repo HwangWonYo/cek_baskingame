@@ -8,8 +8,14 @@ clova = Clova(blueprint=app)
 import random
 @clova.launch
 def launch():
-    speech = random.choice(dialog_set)
+    return statement("안녕하세요. 소라 고동 입니다.")
+
+
+@clova.default_intent
+def default_intent():
+    speech  = random.choice(dialog_set)
     return statement(speech)
+
 
 dialog_set = [
     "하지마",
